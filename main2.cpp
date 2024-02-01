@@ -9,6 +9,34 @@ struct RoadSegment {
     double begining; // meters
     int minSpeed; // km/h
     int maxSpeed; // km/h
+
+    int holes; //0 1
+    int hiddenDanger;  //...
+};
+
+class BaseRoad {
+public:
+    virtual int minSpeedAt(double meters) const = 0;
+    virtual int maxSpeedAt(double meters) const = 0;
+    virtual int totalLength() const = 0;
+    virtual int getHoles() const = 0;
+    virtual double getDamagePercent(double meters, int speed) const = 0;
+
+    virtual ~BaseRoad() {};
+};
+
+class SimpleRoad : public BaseRoad {
+private:
+    int minSpeed;
+    int maxSpeed;
+    double lenMeters;
+};
+
+class CombineRoad : public BaseRoad {
+public:
+
+private:
+    std::vector<BaseRoad *> segments;
 };
 
 class Road {
@@ -92,6 +120,8 @@ private:
 
 class Controller {
 public:
+    Controller() : timerInterval(10) {}
+
     void addCar() {
         // Car *p = new Car(unique_name());
         // cars.emplace_back(p);
@@ -109,7 +139,7 @@ public:
             }
         }
         for (auto &car : cars) {
-            car->tick(10);
+            car->tick(timerInterval);
         }
     }
 private:
