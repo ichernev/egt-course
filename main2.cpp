@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 #include <exception>
-#include <unistd.h>
+// #include <unistd.h>
 
 struct RoadSegment {
     double begining; // meters
@@ -133,7 +133,7 @@ int main() {
 
     for (int i = 0; i < 10; ++i) {
         ctl.loop();
-        sleep(1);
+        // sleep(1);
     }
 
     return 0;
