@@ -10,7 +10,7 @@ struct RoadSegment {
     int minSpeed; // km/h
     int maxSpeed; // km/h
 
-    int holes; //0 1
+    // int holes; //0 1
     int hiddenDanger;  //...
 };
 
@@ -19,7 +19,7 @@ public:
     virtual int minSpeedAt(double meters) const = 0;
     virtual int maxSpeedAt(double meters) const = 0;
     virtual int totalLength() const = 0;
-    virtual int getHoles() const = 0;
+    // virtual int getHoles() const = 0;
     virtual double getDamagePercent(double meters, int speed) const = 0;
 
     virtual ~BaseRoad() {};
